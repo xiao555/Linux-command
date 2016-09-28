@@ -1,3 +1,74 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [每天一个Linux命令](#%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AAlinux%E5%91%BD%E4%BB%A4)
+  - [文件操作命令](#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4)
+    - [ls命令](#ls%E5%91%BD%E4%BB%A4)
+      - [1. 命令格式：](#1-%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F%EF%BC%9A)
+      - [2. 命令功能：](#2-%E5%91%BD%E4%BB%A4%E5%8A%9F%E8%83%BD%EF%BC%9A)
+      - [3. 常用参数：](#3-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%EF%BC%9A)
+      - [4. 常用范例：](#4-%E5%B8%B8%E7%94%A8%E8%8C%83%E4%BE%8B%EF%BC%9A)
+        - [例一：列出/home/peidachang文件夹下的所有文件和目录的详细资料](#%E4%BE%8B%E4%B8%80%EF%BC%9A%E5%88%97%E5%87%BAhomepeidachang%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%9A%84%E8%AF%A6%E7%BB%86%E8%B5%84%E6%96%99)
+        - [例二：列出当前目录中所有以“t”开头的目录的详细内容，可以使用如下命令：](#%E4%BE%8B%E4%BA%8C%EF%BC%9A%E5%88%97%E5%87%BA%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%AD%E6%89%80%E6%9C%89%E4%BB%A5%E2%80%9Ct%E2%80%9D%E5%BC%80%E5%A4%B4%E7%9A%84%E7%9B%AE%E5%BD%95%E7%9A%84%E8%AF%A6%E7%BB%86%E5%86%85%E5%AE%B9%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4%EF%BC%9A)
+        - [例三：只列出文件下的子目录](#%E4%BE%8B%E4%B8%89%EF%BC%9A%E5%8F%AA%E5%88%97%E5%87%BA%E6%96%87%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AD%90%E7%9B%AE%E5%BD%95)
+        - [例四：列出目前工作目录下所有名称是s 开头的档案，愈新的排愈后面，可以使用如下命令：](#%E4%BE%8B%E5%9B%9B%EF%BC%9A%E5%88%97%E5%87%BA%E7%9B%AE%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E5%90%8D%E7%A7%B0%E6%98%AFs-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%A1%A3%E6%A1%88%EF%BC%8C%E6%84%88%E6%96%B0%E7%9A%84%E6%8E%92%E6%84%88%E5%90%8E%E9%9D%A2%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4%EF%BC%9A)
+        - [例五：列出目前工作目录下所有档案及目录;目录于名称后加"/", 可执行档于名称后加"*"](#%E4%BE%8B%E4%BA%94%EF%BC%9A%E5%88%97%E5%87%BA%E7%9B%AE%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E6%A1%A3%E6%A1%88%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%9B%AE%E5%BD%95%E4%BA%8E%E5%90%8D%E7%A7%B0%E5%90%8E%E5%8A%A0-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%A1%A3%E4%BA%8E%E5%90%8D%E7%A7%B0%E5%90%8E%E5%8A%A0)
+        - [例六：计算当前目录下的文件数和目录数](#%E4%BE%8B%E5%85%AD%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%E6%95%B0%E5%92%8C%E7%9B%AE%E5%BD%95%E6%95%B0)
+        - [例七: 在ls中列出文件的绝对路径](#%E4%BE%8B%E4%B8%83-%E5%9C%A8ls%E4%B8%AD%E5%88%97%E5%87%BA%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)
+        - [例九：列出当前目录下的所有文件（包括隐藏文件）的绝对路径， 对目录不做递归](#%E4%BE%8B%E4%B9%9D%EF%BC%9A%E5%88%97%E5%87%BA%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%88%E5%8C%85%E6%8B%AC%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%EF%BC%89%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%EF%BC%8C-%E5%AF%B9%E7%9B%AE%E5%BD%95%E4%B8%8D%E5%81%9A%E9%80%92%E5%BD%92)
+        - [例十：递归列出当前目录下的所有文件（包括隐藏文件）的绝对路径](#%E4%BE%8B%E5%8D%81%EF%BC%9A%E9%80%92%E5%BD%92%E5%88%97%E5%87%BA%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%88%E5%8C%85%E6%8B%AC%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%EF%BC%89%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)
+        - [例十一：指定文件时间输出格式](#%E4%BE%8B%E5%8D%81%E4%B8%80%EF%BC%9A%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F)
+      - [扩展：](#%E6%89%A9%E5%B1%95%EF%BC%9A)
+    - [cd命令](#cd%E5%91%BD%E4%BB%A4)
+      - [1. 命令格式：](#1-%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F%EF%BC%9A-1)
+      - [2. 命令功能：](#2-%E5%91%BD%E4%BB%A4%E5%8A%9F%E8%83%BD%EF%BC%9A-1)
+      - [3. 常用范例](#3-%E5%B8%B8%E7%94%A8%E8%8C%83%E4%BE%8B)
+        - [3.1 例一：进入系统根目录](#31-%E4%BE%8B%E4%B8%80%EF%BC%9A%E8%BF%9B%E5%85%A5%E7%B3%BB%E7%BB%9F%E6%A0%B9%E7%9B%AE%E5%BD%95)
+        - [例2：使用 cd 命令进入当前用户主目录](#%E4%BE%8B2%EF%BC%9A%E4%BD%BF%E7%94%A8-cd-%E5%91%BD%E4%BB%A4%E8%BF%9B%E5%85%A5%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%B8%BB%E7%9B%AE%E5%BD%95)
+        - [例3：跳转到指定目录](#%E4%BE%8B3%EF%BC%9A%E8%B7%B3%E8%BD%AC%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95)
+        - [例四：返回进入此目录之前所在的目录](#%E4%BE%8B%E5%9B%9B%EF%BC%9A%E8%BF%94%E5%9B%9E%E8%BF%9B%E5%85%A5%E6%AD%A4%E7%9B%AE%E5%BD%95%E4%B9%8B%E5%89%8D%E6%89%80%E5%9C%A8%E7%9A%84%E7%9B%AE%E5%BD%95)
+        - [例五：把上个命令的参数作为cd参数使用。](#%E4%BE%8B%E4%BA%94%EF%BC%9A%E6%8A%8A%E4%B8%8A%E4%B8%AA%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8F%82%E6%95%B0%E4%BD%9C%E4%B8%BAcd%E5%8F%82%E6%95%B0%E4%BD%BF%E7%94%A8%E3%80%82)
+    - [ssh密钥](#ssh%E5%AF%86%E9%92%A5)
+      - [生成ssh密钥](#%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5)
+      - [服务器端认证](#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%AE%A4%E8%AF%81)
+    - [Linux SSH远程文件/目录传输命令scp](#linux-ssh%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E4%BC%A0%E8%BE%93%E5%91%BD%E4%BB%A4scp)
+      - [一、scp是什么？](#%E4%B8%80%E3%80%81scp%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F)
+      - [二、scp有什么用？](#%E4%BA%8C%E3%80%81scp%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F)
+      - [三、scp使用方法](#%E4%B8%89%E3%80%81scp%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
+        - [1、获取远程服务器上的文件](#1%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E6%96%87%E4%BB%B6)
+        - [2、获取远程服务器上的目录](#2%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E7%9B%AE%E5%BD%95)
+        - [3、将本地文件上传到服务器上](#3%E3%80%81%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A)
+        - [4、将本地目录上传到服务器上](#4%E3%80%81%E5%B0%86%E6%9C%AC%E5%9C%B0%E7%9B%AE%E5%BD%95%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A)
+        - [5、可能有用的几个参数 :](#5%E3%80%81%E5%8F%AF%E8%83%BD%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%A0%E4%B8%AA%E5%8F%82%E6%95%B0-)
+    - [wget 命令](#wget-%E5%91%BD%E4%BB%A4)
+      - [1．命令格式：](#1%EF%BC%8E%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F%EF%BC%9A)
+      - [2．命令功能：](#2%EF%BC%8E%E5%91%BD%E4%BB%A4%E5%8A%9F%E8%83%BD%EF%BC%9A)
+      - [3．命令参数：](#3%EF%BC%8E%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%EF%BC%9A)
+        - [启动参数：](#%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%EF%BC%9A)
+        - [下载参数：](#%E4%B8%8B%E8%BD%BD%E5%8F%82%E6%95%B0%EF%BC%9A)
+        - [目录参数：](#%E7%9B%AE%E5%BD%95%E5%8F%82%E6%95%B0%EF%BC%9A)
+        - [FTP 选项参数：](#ftp-%E9%80%89%E9%A1%B9%E5%8F%82%E6%95%B0%EF%BC%9A)
+        - [递归下载参数：](#%E9%80%92%E5%BD%92%E4%B8%8B%E8%BD%BD%E5%8F%82%E6%95%B0%EF%BC%9A)
+      - [4．使用实例：](#4%EF%BC%8E%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B%EF%BC%9A)
+        - [实例1：使用wget下载单个文件](#%E5%AE%9E%E4%BE%8B1%EF%BC%9A%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BD%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6)
+        - [实例2：使用wget -O下载并以不同的文件名保存](#%E5%AE%9E%E4%BE%8B2%EF%BC%9A%E4%BD%BF%E7%94%A8wget--o%E4%B8%8B%E8%BD%BD%E5%B9%B6%E4%BB%A5%E4%B8%8D%E5%90%8C%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E4%BF%9D%E5%AD%98)
+        - [实例3：使用wget –limit -rate限速下载](#%E5%AE%9E%E4%BE%8B3%EF%BC%9A%E4%BD%BF%E7%94%A8wget-%E2%80%93limit--rate%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD)
+        - [实例4：使用wget -c断点续传](#%E5%AE%9E%E4%BE%8B4%EF%BC%9A%E4%BD%BF%E7%94%A8wget--c%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0)
+        - [实例5：使用wget -b后台下载](#%E5%AE%9E%E4%BE%8B5%EF%BC%9A%E4%BD%BF%E7%94%A8wget--b%E5%90%8E%E5%8F%B0%E4%B8%8B%E8%BD%BD)
+        - [实例6：伪装代理名称下载](#%E5%AE%9E%E4%BE%8B6%EF%BC%9A%E4%BC%AA%E8%A3%85%E4%BB%A3%E7%90%86%E5%90%8D%E7%A7%B0%E4%B8%8B%E8%BD%BD)
+        - [实例7：使用wget –spider测试下载链接](#%E5%AE%9E%E4%BE%8B7%EF%BC%9A%E4%BD%BF%E7%94%A8wget-%E2%80%93spider%E6%B5%8B%E8%AF%95%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5)
+        - [实例8：使用wget –tries增加重试次数](#%E5%AE%9E%E4%BE%8B8%EF%BC%9A%E4%BD%BF%E7%94%A8wget-%E2%80%93tries%E5%A2%9E%E5%8A%A0%E9%87%8D%E8%AF%95%E6%AC%A1%E6%95%B0)
+        - [实例9：使用wget -i下载多个文件](#%E5%AE%9E%E4%BE%8B9%EF%BC%9A%E4%BD%BF%E7%94%A8wget--i%E4%B8%8B%E8%BD%BD%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6)
+        - [实例10：使用wget –mirror镜像网站](#%E5%AE%9E%E4%BE%8B10%EF%BC%9A%E4%BD%BF%E7%94%A8wget-%E2%80%93mirror%E9%95%9C%E5%83%8F%E7%BD%91%E7%AB%99)
+        - [实例11：使用wget –reject过滤指定格式下载](#%E5%AE%9E%E4%BE%8B11%EF%BC%9A%E4%BD%BF%E7%94%A8wget-%E2%80%93reject%E8%BF%87%E6%BB%A4%E6%8C%87%E5%AE%9A%E6%A0%BC%E5%BC%8F%E4%B8%8B%E8%BD%BD)
+        - [实例12：使用wget -o把下载信息存入日志文件](#%E5%AE%9E%E4%BE%8B12%EF%BC%9A%E4%BD%BF%E7%94%A8wget--o%E6%8A%8A%E4%B8%8B%E8%BD%BD%E4%BF%A1%E6%81%AF%E5%AD%98%E5%85%A5%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6)
+        - [实例13：使用wget -Q限制总下载文件大小](#%E5%AE%9E%E4%BE%8B13%EF%BC%9A%E4%BD%BF%E7%94%A8wget--q%E9%99%90%E5%88%B6%E6%80%BB%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F)
+        - [实例14：使用wget -r -A下载指定格式文件](#%E5%AE%9E%E4%BE%8B14%EF%BC%9A%E4%BD%BF%E7%94%A8wget--r--a%E4%B8%8B%E8%BD%BD%E6%8C%87%E5%AE%9A%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6)
+        - [实例15：使用wget FTP下载](#%E5%AE%9E%E4%BE%8B15%EF%BC%9A%E4%BD%BF%E7%94%A8wget-ftp%E4%B8%8B%E8%BD%BD)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 每天一个Linux命令
 
 ## 文件操作命令
@@ -158,6 +229,114 @@ drwxr-xr-x 16 1016 1016      4096 2012-10-11 03:25 subversion-1.6.1
     3. 红色-->压缩文件
     4. 浅蓝色-->链接文件
     5. 灰色-->其他文件
+
+### cd命令
+
+Linux cd 命令可以说是Linux中最基本的命令语句，其他的命令语句要进行操作，都是建立在使用 cd 命令上的。
+所以，学习Linux 常用命令，首先就要学好 cd 命令的使用方法技巧。
+
+#### 1. 命令格式：
+cd [目录名]
+#### 2. 命令功能：
+切换当前目录至dirName
+#### 3. 常用范例
+##### 3.1 例一：进入系统根目录
+命令：
+cd / 
+输出：
+
+    [root@localhost ~]# cd /   
+
+说明：进入系统根目录,上面命令执行完后拿ls命令看一下，当前目录已经到系统根目录了 
+命令：
+cd .. 或者 cd .. //
+输出:
+
+    1 [root@localhost soft]# pwd
+    2 /opt/soft
+    3 [root@localhost soft]# cd ..
+    4 [root@localhost opt]# cd ..//
+    5 [root@localhost /]# pwd
+    6 / 
+
+说明：
+进入系统根目录可以使用“ cd .. ”一直退，就可以到达根目录 
+命令：
+cd ../.. //
+输出：
+
+    1 [root@localhost soft]# pwd
+    2 /opt/soft
+    3 [root@localhost soft]# cd ../.. //
+    4 [root@localhost /]# pwd
+    5 /
+    6 [root@localhost /]# 
+ 
+说明：使用cd 命令实现进入当前目录的父目录的父目录。 
+##### 例2：使用 cd 命令进入当前用户主目录
+“当前用户主目录”和“系统根目录”是两个不同的概念。进入当前用户主目录有两个方法。
+命令1：
+cd
+输出：
+
+    1 [root@localhost soft]# pwd
+    2 /opt/soft
+    3 [root@localhost soft]# cd
+    4 [root@localhost ~]# pwd
+    5 /root
+
+命令2：
+cd ~
+输出：
+
+    1 　　[root@localhost ~]# cd /opt/soft/
+    2 　　[root@localhost soft]# pwd
+    3 　　/opt/soft
+    4 　　[root@localhost soft]# cd ~
+    5 　　[root@localhost ~]# pwd
+    6 　　/root       
+##### 例3：跳转到指定目录
+命令： 
+cd /opt/soft
+输出：
+
+    1 [root@localhost ~]# cd /opt/soft
+    2 [root@localhost soft]# pwd
+    3 /opt/soft
+    4 [root@localhost soft]# cd jdk1.6.0_16/
+    5 [root@localhost jdk1.6.0_16]# pwd
+    6 /opt/soft/jdk1.6.0_16
+    7 [root@localhost jdk1.6.0_16]# 
+说明：
+跳转到指定目录，从根目录开始，目录名称前加 / ,当前目录内的子目录直接写名称即可
+##### 例四：返回进入此目录之前所在的目录
+命令：
+cd -
+输出：
+
+    1 [root@localhost soft]# pwd
+    2 /opt/soft
+    3 [root@localhost soft]# cd -
+    4 /root
+    5 [root@localhost ~]# pwd
+    6 /root
+    7 [root@localhost ~]# cd -
+    8 /opt/soft
+    9 [root@localhost soft]# 
+##### 例五：把上个命令的参数作为cd参数使用。 
+命令：
+cd !$
+输出：
+
+    1 [root@localhost soft]# cd !$
+    2 cd -
+    3 /root
+    4 [root@localhost ~]# cd !$
+    5 cd -
+    6 /opt/soft
+    7 [root@localhost soft]# 
+
+
 
 
 ### ssh密钥
